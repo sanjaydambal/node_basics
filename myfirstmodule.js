@@ -21,3 +21,16 @@ http.createServer(function (req, res) {
 exports.myDateTime = function() {
     return Date();
 };
+
+import('upper-case').then(uc => {
+  
+    http.createServer(function (req, res) {
+      res.writeHead(200, { 'Content-Type': 'text/html' });
+      res.write(uc.upperCase("Hello World!"));
+      res.end();
+    }).listen(8081);
+  }).catch(err => {
+    // Handle any potential errors during the import
+    console.error('Error during dynamic import:', err);
+  });
+  
